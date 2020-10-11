@@ -1,0 +1,19 @@
+.add-contact-form .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .add-contact-form .mat-form-field {
+     width: 400px; 
+  }
+  
+  .add-contact-form form {
+    margin-bottom: 20px;
+  }
+  
+  .add-contact-form form > * {
+    margin: 5px 0;
+  }
+  
+  .add-contact-form .mat-radio-button {
+    margin: 0 12px;
+  }
