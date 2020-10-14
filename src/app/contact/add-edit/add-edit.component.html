@@ -17,10 +17,13 @@
             <input matInput placeholder="Placeholder" formControlName="mobileNo">
         </mat-form-field>
         <br>
-        <mat-form-field appearance="standard">
-            <mat-label>Gender</mat-label>
-            <input matInput placeholder="Placeholder" formControlName="gender">
-        </mat-form-field>
+        <mat-label>Gender</mat-label>
+        <mat-radio-group formControlName="gender">
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+            <mat-radio-button value="Other">Other</mat-radio-button>
+        </mat-radio-group>
+        <!-- <input matInput placeholder="Placeholder" formControlName="gender"> -->
         <br>
         <mat-form-field appearance="standard">
             <mat-label>Company Name</mat-label>
@@ -30,5 +33,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSubmit()">Submit</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSubmit()" [disabled]="contactForm.status !== 'VALID'">Submit</button>
 </mat-dialog-actions>

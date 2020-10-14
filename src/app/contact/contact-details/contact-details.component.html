@@ -1,1 +1,10 @@
-<p>contact-details works!</p>
+<div class="back-btn">
+    <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+</div>
+<div class="contact-details" *ngIf="contactDetails">
+    <h2>Name : {{contactDetails?.name}}</h2>
+    <h2>Email : {{contactDetails?.email}}</h2>
+    <h2>Mobile Number : {{contactDetails?.mobileNo}}</h2>
+    <h2>Gender : {{contactDetails?.gender}}</h2>
+    <h2>Company : {{contactDetails?.companyName}}</h2>
+</div>

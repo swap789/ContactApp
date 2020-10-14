@@ -1,0 +1,11 @@
+.contact-details {
+    display:flex;
+    margin: 20px;
+    flex-direction: column;
+}
+
+.back-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 20px;
+}

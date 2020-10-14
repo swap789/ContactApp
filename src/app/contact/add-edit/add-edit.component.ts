@@ -15,7 +15,7 @@ export class AddEditComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     mobileNo: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-    gender: new FormControl('', [Validators.required]),
+    gender: new FormControl('Male', [Validators.required]),
     companyName: new FormControl('', [Validators.required]),
   });
 

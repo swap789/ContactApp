@@ -1,6 +1,7 @@
 import { ContactService } from './../contact.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { IContact } from '../contact.interface';
 import { AddEditComponent } from '../add-edit/add-edit.component';
@@ -11,10 +12,10 @@ import { AddEditComponent } from '../add-edit/add-edit.component';
   styleUrls: ['./contact-list.component.css']
 })
 
-
 export class ContactListComponent implements OnInit {
 
-  constructor(private contactService: ContactService, public dialog: MatDialog) { }
+  constructor(private contactService: ContactService, public dialog: MatDialog,
+    private router: Router) { }
 
   columnsToDisplay = [
     {
@@ -41,9 +42,15 @@ export class ContactListComponent implements OnInit {
       name: "Company Name",
       colum: "companyName",
       index: "companyName"
-    }];
+    },
+    {
+      name: "",
+      colum: "menu",
+      index: "menu"
+    }
+  ];
 
-  columns = ['name', 'email', 'mobileNo', 'gender', 'companyName']
+  columns = ['name', 'email', 'mobileNo', 'gender', 'companyName', 'menu']
 
   dataSource: IContact[] = [];
 
@@ -62,9 +69,13 @@ export class ContactListComponent implements OnInit {
 
   addContact() {
     const dialogRef = this.dialog.open(AddEditComponent);
-
     dialogRef.afterClosed().subscribe(result => {
+      this.getContacts();
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  contactDetails(row) {
+    this.router.navigate(['/contact-details', row.id]);
   }
 }
