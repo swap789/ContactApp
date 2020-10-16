@@ -14,45 +14,11 @@ import { AddEditComponent } from '../add-edit/add-edit.component';
 
 export class ContactListComponent implements OnInit {
 
+  columns = ['name', 'email', 'mobileNo', 'gender', 'companyName', 'view', 'menu']
+  dataSource: IContact[] = [];
+
   constructor(private contactService: ContactService, public dialog: MatDialog,
     private router: Router) { }
-
-  columnsToDisplay = [
-    {
-      name: "Name",
-      colum: "name",
-      index: "name"
-    },
-    {
-      name: "Email",
-      colum: "email",
-      index: "email"
-    },
-    {
-      name: "Mobile Number",
-      colum: "mobileNo",
-      index: "mobileNo"
-    },
-    {
-      name: "Gender",
-      colum: "gender",
-      index: "gender"
-    },
-    {
-      name: "Company Name",
-      colum: "companyName",
-      index: "companyName"
-    },
-    {
-      name: "",
-      colum: "menu",
-      index: "menu"
-    }
-  ];
-
-  columns = ['name', 'email', 'mobileNo', 'gender', 'companyName', 'menu']
-
-  dataSource: IContact[] = [];
 
   ngOnInit(): void {
     this.getContacts();
@@ -68,7 +34,11 @@ export class ContactListComponent implements OnInit {
   }
 
   addContact() {
-    const dialogRef = this.dialog.open(AddEditComponent);
+    const dialogRef = this.dialog.open(AddEditComponent, {
+      data: {
+        mode: 'create'
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       this.getContacts();
       console.log(`Dialog result: ${result}`);
@@ -77,5 +47,23 @@ export class ContactListComponent implements OnInit {
 
   contactDetails(row) {
     this.router.navigate(['/contact-details', row.id]);
+  }
+
+  editContact(row) {
+    const dialogRef = this.dialog.open(AddEditComponent, {
+      data: {
+        mode: 'edit',
+        contact: row
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getContacts();
+      console.log(`Dialog result: ${result}`);
+    });
+    console.log(row);
+  }
+
+  deleteContact() {
+    //TODO: Add yes or no confirmation dialog
   }
 }

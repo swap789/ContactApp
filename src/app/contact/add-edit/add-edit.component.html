@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add Contact</h2>
+<h2 mat-dialog-title>{{contactFormLabel}}</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="contactForm" class="add-contact-form">
         <mat-form-field appearance="standard">
@@ -23,7 +23,6 @@
             <mat-radio-button value="Female">Female</mat-radio-button>
             <mat-radio-button value="Other">Other</mat-radio-button>
         </mat-radio-group>
-        <!-- <input matInput placeholder="Placeholder" formControlName="gender"> -->
         <br>
         <mat-form-field appearance="standard">
             <mat-label>Company Name</mat-label>
@@ -33,5 +32,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSubmit()" [disabled]="contactForm.status !== 'VALID'">Submit</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSubmit()"
+        [disabled]="contactForm.status !== 'VALID'">{{formBtnName}}</button>
 </mat-dialog-actions>
